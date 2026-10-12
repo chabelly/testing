@@ -1,1 +1,411 @@
-<h1>Hola, Humans</h1>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Inter:wght@400;500;600&display=swap");
+
+:root {
+  color: #15191d;
+  background: #15191d;
+  font-family: "Inter", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+.page-shell {
+  min-height: 100vh;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.hero {
+  min-height: calc(100vh - 40px);
+  padding: 70px 30px;
+  overflow: hidden;
+  border-radius: 70px;
+  background: #f7f7f7;
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-kicker {
+  margin: 0 0 12px;
+  color: #4b5361;
+  font-size: clamp(14px, 1.5vw, 22px);
+  font-weight: 500;
+}
+
+.hero h1 {
+  margin: 0;
+  color: #15191d;
+  font-weight: 400;
+  line-height: 0.96;
+}
+
+.hero h1 span {
+  display: block;
+}
+
+.serif-line {
+  font-family: "Instrument Serif", serif;
+  font-size: clamp(48px, 6vw, 88px);
+  font-style: italic;
+  letter-spacing: -0.02em;
+}
+
+.sans-line {
+  font-size: clamp(42px, 6vw, 88px);
+  letter-spacing: -0.06em;
+}
+
+.hero-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  margin-top: 32px;
+  padding: 15px 28px;
+  overflow: hidden;
+  border-radius: 999px;
+  color: white;
+  background: #15191d;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    gap 250ms ease,
+    background 250ms ease,
+    transform 250ms ease;
+}
+
+.hero-button span {
+  width: 0;
+  opacity: 0;
+  transform: translate(-8px, -8px);
+  transition:
+    width 250ms ease,
+    opacity 250ms ease,
+    transform 250ms ease;
+}
+
+.hero-button:hover,
+.hero-button:focus-visible {
+  gap: 8px;
+  background: #db3000;
+  transform: translateY(-2px);
+}
+
+.hero-button:hover span,
+.hero-button:focus-visible span {
+  width: 12px;
+  opacity: 1;
+  transform: translate(0);
+}
+
+/* Card composition */
+
+.showcase {
+  position: relative;
+  width: min(100%, 1050px);
+  height: 490px;
+  margin: 70px auto 0;
+}
+
+.floating-card {
+  --float-delay: 0s;
+
+  position: absolute;
+  display: grid;
+  place-items: center;
+  border: 1px solid #e8e8e9;
+  border-radius: 35px;
+  color: #34393f;
+  background: white;
+  box-shadow: 0 20px 50px rgb(21 25 29 / 5%);
+  font-weight: 600;
+
+  animation:
+    card-entrance 700ms cubic-bezier(0.22, 1, 0.36, 1) backwards,
+    card-float 6s ease-in-out var(--float-delay) infinite;
+}
+
+.card-one {
+  --float-delay: -1.8s;
+
+  left: 0;
+  top: 60px;
+  width: 220px;
+  height: 330px;
+}
+
+.card-two {
+  --float-delay: -0.6s;
+
+  left: 250px;
+  top: 0;
+  width: 210px;
+  height: 210px;
+}
+
+.camera-card {
+  --float-delay: -2.7s;
+
+  left: 50%;
+  top: 25px;
+  width: 250px;
+  height: 350px;
+  overflow: hidden;
+  color: white;
+  background:
+    linear-gradient(rgb(0 0 0 / 15%), rgb(0 0 0 / 40%)),
+    url("your-image.jpg") center / cover;
+  transform: translateX(-50%);
+}
+
+.camera-card strong {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.detection-box {
+  position: absolute;
+  top: 75px;
+  left: 65px;
+  width: 125px;
+  height: 210px;
+  border: 4px solid #f94d1e;
+  animation: detection-pulse 2.4s ease-in-out infinite;
+}
+
+.card-three {
+  --float-delay: -3.2s;
+
+  right: 0;
+  top: 55px;
+  width: 220px;
+  height: 300px;
+}
+
+.card-four {
+  --float-delay: -1.3s;
+
+  right: 240px;
+  bottom: 0;
+  width: 175px;
+  height: 110px;
+}
+
+/* Entrance animations */
+
+.reveal {
+  opacity: 0;
+  animation: reveal-up 800ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.reveal-1 {
+  animation-delay: 100ms;
+}
+
+.reveal-2 {
+  animation-delay: 180ms;
+}
+
+.reveal-3 {
+  animation-delay: 290ms;
+}
+
+.reveal-4 {
+  animation-delay: 420ms;
+}
+
+.showcase-reveal {
+  opacity: 0;
+  animation: fade-in 700ms ease 520ms forwards;
+}
+
+/* Keyframes */
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes card-entrance {
+  from {
+    opacity: 0;
+    scale: 0.94;
+  }
+
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+@keyframes card-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -9px;
+  }
+}
+
+@keyframes detection-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgb(249 77 30 / 0%);
+  }
+
+  50% {
+    opacity: 0.75;
+    box-shadow: 0 0 0 7px rgb(249 77 30 / 12%);
+  }
+}
+
+/* Responsive layout */
+
+@media (max-width: 800px) {
+  .page-shell {
+    padding: 0;
+  }
+
+  .hero {
+    padding: 55px 20px;
+    border-radius: 0;
+  }
+
+  .showcase {
+    display: grid;
+    width: min(100%, 430px);
+    height: auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .floating-card {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: 180px;
+    transform: none;
+  }
+
+  .camera-card {
+    grid-column: 1 / -1;
+    width: min(100%, 280px);
+    height: 350px;
+    margin: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .showcase {
+    grid-template-columns: 1fr;
+  }
+
+  .floating-card {
+    width: min(100%, 280px);
+    margin-inline: auto;
+  }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  .showcase-reveal,
+  .floating-card,
+  .detection-box {
+    opacity: 1;
+    animation: none;
+    filter: none;
+  }
+
+  .hero-button,
+  .hero-button span {
+    transition: none;
+  }
+}
+</style>
+<main class="page-shell">
+  <section class="hero">
+    <header class="hero-copy">
+      <p class="hero-kicker reveal reveal-1">
+        Creative Technologist
+      </p>
+
+      <h1>
+        <span class="serif-line reveal reveal-2">
+          Crafting Thoughtful
+        </span>
+
+        <span class="sans-line reveal reveal-3">
+          Digital Experiences
+        </span>
+      </h1>
+
+      <a class="hero-button reveal reveal-4" href="#projects">
+        View Projects
+        <span aria-hidden="true">↘</span>
+      </a>
+    </header>
+
+    <div class="showcase showcase-reveal" id="projects">
+      <article class="floating-card card-one">
+        <span>Product Design</span>
+      </article>
+
+      <article class="floating-card card-two">
+        <span>Smart Security</span>
+      </article>
+
+      <article class="floating-card camera-card">
+        <span class="detection-box"></span>
+        <strong>Person Detected</strong>
+      </article>
+
+      <article class="floating-card card-three">
+        <span>Mobile Experience</span>
+      </article>
+
+      <article class="floating-card card-four">
+        <span>Accessibility</span>
+      </article>
+    </div>
+  </section>
+</main>
